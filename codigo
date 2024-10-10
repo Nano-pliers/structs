@@ -1,0 +1,51 @@
+struct Rectangle {
+    width: u32,
+    height: u32,
+} // here we define the type object named Rectangle with two attributes width and height both are u32 integers
+
+impl Rectangle {
+    // Constructor method
+    fn new(width: u32, height: u32) -> Rectangle {
+        Rectangle { width, height }
+    }
+
+    // Method to calculate the area
+    fn area(&self) -> u32 {
+        self.width * self.height
+    }
+    fn perimeter(&self) -> u32 {
+        (self.width * 2) + (self.height * 2)
+    }// i added this new function
+    
+} // impl is for add methods and they need to use the atributtes defined in struct
+
+struct Romboid { //Here we add the type object Romboid.
+    rectangle: Rectangle, // Here, i want to think we consider the attributes from the rectangle struct
+    angle: f32, // And here we add a new attribute named angle.
+}
+
+impl Romboid { //Here is for add the methods
+    fn new(width: u32, height: u32, angle: f32) -> Romboid {
+        Romboid {
+            rectangle: Rectangle::new(width, height),
+            angle, 
+        }
+    } // Here we add the inheritance for the struct rectangle 
+
+    fn view_angle(&self) -> f32 {
+        self.angle
+    } // We see the attribute angle.
+}
+
+
+fn main() {
+    let rect1 = Rectangle::new(10, 10); // for use an object we need to define it as a variable using let.
+    println!("The area of the rectangle is: {}", rect1.area());
+    println!("The perimeter of the rectangle is: {}", rect1.perimeter());
+    
+    let romb1 = Romboid::new(10, 10, 85.0); // for use an object we need to define it as a variable using let.
+    println!("The area for the Romboid is :{}.", romb1.rectangle.area());// For name the methods of the rectangle we need to add "".rectangle", after rom1.
+    println!("The perimeter for Romboid is :{}.", romb1.rectangle.perimeter());// For name the methods of the rectangle we need to add "".rectangle", after rom1.
+    println!("The angle of the romboid is: {}.", romb1.view_angle());
+    
+}
